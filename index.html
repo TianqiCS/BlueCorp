@@ -76,6 +76,8 @@ h2 {
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">window.Harlowe = { 'State' : State };
 
 Harlowe.State.variables["name"] = "Steven21"; // default
@@ -120,6 +122,8 @@ $('body').on('mousemove', () => {
 
 
 
+
+
 </script><tw-passagedata pid="1" name="LOGOUT" tags="" position="316,0" size="100,100">&lt;script&gt;bgm.src=&quot;mx/GuyTheme.mp3&quot;;&lt;/script&gt;
 (if: !$day)[(set: $day to 1)]
 (if: !$inv)[(set: $inv to (a:))]
@@ -153,13 +157,14 @@ My mom is coming into town next week, do you have any restaurant suggestions? I&
 Catch you on the flip side!
 
 PS - got you a little gift, it&#39;s in the drawer ;)
-(link-goto: &quot;&lt;-&quot;, &quot;Reports&quot;) </tw-passagedata><tw-passagedata pid="3" name="Computer" tags="" position="314,144" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+(link-goto: &quot;&lt;-&quot;, &quot;Reports&quot;) </tw-passagedata><tw-passagedata pid="3" name="Computer" tags="" position="315,144" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 Hello, $name!
 
 [[DAYSHIFT]]
 [[NIGHTSHIFT-&gt;Start]]
 [[ADMIN]]
-You find a book.(click: &quot;book&quot;)[Click to have a random sound!&lt;script&gt;randomSoundPlayer(0,1);&lt;/script&gt;]
+[[MiniGame]]
+
 [[go back-&gt;LOGOUT]]
 &lt;audio src=&quot;sounds/BC_Paper_Shuffle_01.ogg&quot;&gt;&lt;/audio&gt;
 &lt;audio src=&quot;sounds/BC_Paper_Shuffle_02.ogg&quot;&gt;&lt;/audio&gt;</tw-passagedata><tw-passagedata pid="4" name="Drawer" tags="" position="606,2" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
@@ -793,7 +798,9 @@ Stomatopoda Terramillipedes:
 $StObservation2
 
 1. Talk to you later(click: &quot;Talk to you later&quot;)[(go-to: &quot;Day 2&quot;)]
-2. Did you want to grab some drinks on Saturday once you get off? It&#39;s been a hot minute since we&#39;ve explored the nightlife.(click: &quot;Did you want to grab some drinks on Saturday once you get off? It&#39;s been a hot minute since we&#39;ve explored the nightlife.&quot;)[(go-to: &quot;Day 2&quot;)]</tw-passagedata></tw-storydata>
+2. Did you want to grab some drinks on Saturday once you get off? It&#39;s been a hot minute since we&#39;ve explored the nightlife.(click: &quot;Did you want to grab some drinks on Saturday once you get off? It&#39;s been a hot minute since we&#39;ve explored the nightlife.&quot;)[(go-to: &quot;Day 2&quot;)]</tw-passagedata><tw-passagedata pid="74" name="MiniGame" tags="" position="473,416" size="100,100">MineSweeper
+&lt;iframe height=500px width=100% src=&quot;https://tianqics.github.io/MineSweeper-Remastered/&quot;&gt;&lt;/iframe&gt;
+[[Back-&gt;Computer]]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
