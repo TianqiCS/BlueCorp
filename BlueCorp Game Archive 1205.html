@@ -1,4 +1,4 @@
-<tw-storydata name="BluCorp" startnode="40" creator="Twine" creator-version="2.2.1" ifid="46493B46-8039-4E4A-9C44-CDADD28660C8" zoom="1" format="Harlowe" format-version="2.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css?family=Dosis');
+<tw-storydata name="BluCorp" startnode="64" creator="Twine" creator-version="2.2.1" ifid="46493B46-8039-4E4A-9C44-CDADD28660C8" zoom="1" format="Harlowe" format-version="2.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css?family=Dosis');
 
 tw-passage tw-include[type="footer"] {
     position: fixed;
@@ -72,6 +72,8 @@ h2 {
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">window.Harlowe = { 'State' : State };
 
 Harlowe.State.variables["name"] = "Steven21"; // default
@@ -106,6 +108,8 @@ window.bgm.play();
 $('body').on('mousemove', () => {
 	window.bgm.play();
 });
+
+
 
 
 
@@ -685,7 +689,7 @@ The man at the desk says to me:
 &quot;Day sent me your report from last night. It seems that the Stoma has progressed phenomenally since you&#39;ve returned. I think you have a talent that could be used elsewhere...you&#39;ve been promoted to a day shift. Take the night off, and join us tomorrow morning.&quot;
 
 [[End]]</tw-passagedata><tw-passagedata pid="57" name="End" tags="" position="2313,128" size="100,100">The End.
-
+(enchant: ?page, (background: &quot;imgs/3d.gif&quot;))
 &lt;h4&gt;But there may be other opitions&lt;/h4&gt;
 |Overwrite Database|
 (click:&quot;|Overwrite Database|&quot;)[&lt;h2&gt;Restart&lt;/h2&gt;]
@@ -735,7 +739,7 @@ PASSWORD:
 &lt;script&gt;processInputElements();&lt;/script&gt;
 
 #####(click: &quot;LOGIN&quot;)[&lt;script&gt;processInputElements();&lt;/script&gt;][[LOGIN-&gt;type in password]]
-</tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,0" size="100,100">(set: $NaDead to false)
+</tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,2" size="100,100">(set: $NaDead to false)
 (set: $AnDead to false)
 (set: $lights to true)
 (set: $NaFood to false)
