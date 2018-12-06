@@ -75,10 +75,19 @@ h2 {
 
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">window.Harlowe = { 'State' : State };
 
 Harlowe.State.variables["name"] = " "; // default
 Harlowe.State.variables["pwd"] = "password"; // default
+
+window.getStoragePrefix = function () {
+	return "(Saved Game " + Engine.options.ifid + ") ";
+}
+
+window.deleteSaveSlot = function (slotName) {
+	localStorage.removeItem(getStoragePrefix() + slotName);
+}
 
 // used to submit form (use with caution, passage is always reloaded)
 window.processInputElements = function () {
@@ -131,9 +140,11 @@ $('body').on('mousemove', () => {
 
 
 
-</script><tw-passagedata pid="1" name="LOGOUT" tags="" position="316,2" size="100,100">&lt;script&gt;if(!bgm.src.includes(&quot;mx/AllDaysMainMusic.m4a&quot;)){bgm.src=&quot;mx/AllDaysMainMusic.m4a&quot;;}&lt;/script&gt;
-(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+
+</script><tw-passagedata pid="1" name="LOGOUT" tags="" position="316,4" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 (if: !$day)[(set: $day to 1)](if: !$inv)[(set: $inv to (a:))](if: $NaDead)[(set: $NaVisit to true)](if: $AnDead)[(set: $AnVisit to true)]
+&lt;script&gt;if(!bgm.src.includes(&quot;mx/AllDaysMainMusic.m4a&quot;)){bgm.src=&quot;mx/AllDaysMainMusic.m4a&quot;;}&lt;/script&gt;
+(if:$NaDeadOnDay1 is true or $NaDeadOnDay2 is true or $AnDeadOnDay1 is true or $AnDeadOnDay2 is true)[(go-to: &quot;Leave office&quot;)]
 (if: (saved-games:) contains &quot;day&quot;+(text:$day))[] (else:)[(if:(save-game:&quot;day&quot;+(text:$day)))[](else:)[Sorry, I couldn&#39;t save your game.]]Day $day:
 19:00 
 
@@ -175,7 +186,7 @@ Hello, $name!
 [[LOG OUT-&gt;LOGOUT]]
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
-&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1Computer.m4a&quot;)){bgm.src=&quot;mx/Day1Computer.m4a&quot;;}&lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Drawer" tags="" position="606,2" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+(if: $day is 1)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1Computer.m4a&quot;)){bgm.src=&quot;mx/Day1Computer.m4a&quot;;}&lt;/script&gt;](elseif: $day is 2)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day2Computer.m4a&quot;)){bgm.src=&quot;mx/Day2Computer.m4a&quot;;}&lt;/script&gt;](else:)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day3Computer.m4a&quot;)){bgm.src=&quot;mx/Day3Computer.m4a&quot;;}&lt;/script&gt;]</tw-passagedata><tw-passagedata pid="4" name="Drawer" tags="" position="606,2" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,1);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Drawer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Drawer_02.ogg&quot;&gt;&lt;/audio&gt;
 [[Envelope]]
@@ -234,16 +245,11 @@ Piggy died when Day knocked him into his coffee. We haven&#39;t had the heart to
 (link-goto: &quot;&lt;-&quot;, &quot;type in password&quot;) </tw-passagedata><tw-passagedata pid="13" name="Go to Creatures" tags="" position="476,132" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Office_Door_01.ogg&quot;&gt;&lt;/audio&gt;
-&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day1GoToCreatures.m4a&quot;;}&lt;/script&gt;
+(if: $day is 1)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day1GoToCreatures.m4a&quot;;}&lt;/script&gt;](elseif: $day is 2)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day2GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day2GoToCreatures.m4a&quot;;}&lt;/script&gt;](else:)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day3GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day3GoToCreatures.m4a&quot;;}&lt;/script&gt;]
 (if: $NaDead is false)[[[Nematoda Animcomedenti-&gt;Nematoda Animcomedenti]]]
 (if: $AnDead is false)[[[Atolla Nonarma-&gt;Atolla Nonarma]]]
-(if: $day is 1)[[[Stomatopoda Terramillipedes-&gt;Stomatopoda Terramillipedes]]]
+(if: $day is 1)[[[Stomatopoda Terramillipedes-&gt;Stomatopoda Terramillipedes]]](elseif: $ran is false and $Agree2Help is false and $day is 2)[[[Stomatopoda Terramillipedes-&gt;STDay2]]](elseif: $ran is true and $day is 2)[You can still feel your heart racing. You&#39;re defnitely not visiting Stomatopoda Terramillipedes again tonight.](elseif: $Agree2Help is true and $day is 2)[I have no reasons to visit Stomatopoda again.](elseif: $day is 3 and $StVisit is false)[[[Stomatopoda Terramillipedes-&gt;STDay3]]](elseif: $day is 3)[I don&#39;t want to visit Stomatopoda now.]
 
-(elseif: $ran is false and $Agree2Help is false and $day is 2)[[[Stomatopoda Terramillipedes-&gt;STDay2]]]
-(elseif: $ran is true and $day is 2)[You can still feel your heart racing. You&#39;re defnitely not visiting Stomatopoda Terramillipedes again tonight.]
-(elseif: $Agree2Help is true and $day is 2)[I have no reasons to visit Stomatopoda again.]
-(elseif: $day is 3 and $StVisit is false)[[[Stomatopoda Terramillipedes-&gt;STDay3]]]
-(elseif: $day is 3)[I don&#39;t want to visit Stomatopoda now.]
 
 [[Supplies]]
 (link-goto: &quot;&lt;-&quot;, &quot;LOGOUT&quot;)</tw-passagedata><tw-passagedata pid="14" name="Supplies" tags="inventory" position="482,278" size="100,100">Deceased Mice 
@@ -397,7 +403,7 @@ It thrashes wildly. The inclosure is a little cleaner.</tw-passagedata><tw-passa
 Day,
 
 Nematoda Animcomedenti: 
-(if: $NaFood is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false)]
+(if: $NaFood is false and $NaDead is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false)]
 (elseif: $NaDead is true)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.(set:$NaDeadOnDay1 to true)]
 (elseif: $NaFood is true)[The Nema needs cowblood to survive...gross...we better put in an order for more.(set:$NaFoodOnDay1 to true, $NaDeadOnDay1 to false)]
 Atolla Nonarma:
@@ -513,15 +519,13 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 My Night Buddy,
 
 Nematoda Animcomedenti: 
-(if: $NaDead is true and $NaDeadOnDay1 is true)[Big Bosses Upstairs are unimpressed that the Nema died...I&#39;d say best case is some more training coming your way...otherwise...]
-(elseif: $NaFoodOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...]
-(elseif: $NaFoodOnDay1 is true)[Oh jeez of course it&#39;s bloody, bloody cow blood. It drinks a lot of it too. I sent in a rush order for more supplies.]
+(if: $NaDead is true and $NaDeadOnDay1 is true)[Big Bosses Upstairs are unimpressed that the Nema died...I&#39;d say best case is some more training coming your way...otherwise...](elseif: $NaFoodOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...](elseif: $NaFoodOnDay1 is true)[Oh jeez of course it&#39;s bloody, bloody cow blood. It drinks a lot of it too. I sent in a rush order for more supplies.]
+
 Atolla Nonarma:
-(if: $AnDead is true and $AnDeadOnDay1 is true)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you..]
-(else:)[That guy is growing so fast! I swear we didn&#39;t mean to set it up it these cramped, poor conditions, but we&#39;re kind of stuck now.]
+(if: $AnDead is true and $AnDeadOnDay1 is true)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you..](else:)[That guy is growing so fast! I swear we didn&#39;t mean to set it up it these cramped, poor conditions, but we&#39;re kind of stuck now.]
+
 Stomatopoda Terramillipedes:
-(if: $violent is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.]
-(if: $playful is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.]
+(if: $violent is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.](if: $playful is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.]
 
 (if: $GaveAdvice is true)[I&#39;ll keep that place in mind.]
 (if: $GaveAdvice is false)[Look, at my place it&#39;s microwave or bust. She doesn&#39;t need to see my shame.]
@@ -622,8 +626,8 @@ Atolla Nonarma:
 
 Stomatopoda Terramillipedes:
 
-1. Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.(click: &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)[(set: $violent2 to true, $StObservation2 to &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]
-2. The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.(click: &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)[(set: $playful2 to true, $StObservation2 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]</tw-passagedata><tw-passagedata pid="50" name="Yes! We need to gain more of his trust, he is not a normal creature." tags="" position="1837,361" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
+Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.(click: &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)[(set: $violent2 to true, $StObservation2 to &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]
+The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.(click: &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)[(set: $playful2 to true, $StObservation2 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]</tw-passagedata><tw-passagedata pid="50" name="Yes! We need to gain more of his trust, he is not a normal creature." tags="" position="1837,361" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &quot;Look, it&#39;s not your fault that you don&#39;t know this. But whatever...relationship...you have with that thing is not acceptable.&quot;
 
 &quot;The discovery of that Stoma was phenomenal, fantastical, and the only thing that is keeping BluCorp afloat.&quot;
@@ -704,7 +708,7 @@ The man at the desk says to me:
 
 [[End]]</tw-passagedata><tw-passagedata pid="57" name="End" tags="" position="2313,128" size="100,100">The End.
 (enchant: ?page, (background: &quot;imgs/3d.gif&quot;))
-&lt;h4&gt;But there may be other opitions&lt;/h4&gt;
+&lt;h4&gt;But there may be other options&lt;/h4&gt;
 |Overwrite Database|
 (click:&quot;|Overwrite Database|&quot;)[&lt;h2&gt;Restart&lt;/h2&gt;]
 (click:&quot;Restart&quot;)[{(if: $Saves contains &quot;day1&quot;)[
@@ -754,23 +758,17 @@ PASSWORD:
 &lt;script&gt;document.getElementById(&#39;displayname&#39;).value = Harlowe.State.variables[&quot;name&quot;];&lt;/script&gt;
 
 #####(click: &quot;LOGIN&quot;)[&lt;script&gt;processInputElements();&lt;/script&gt;][[LOGIN-&gt;type in password]]
-</tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,2" size="100,100">(set: $NaDead to false)
-(set: $AnDead to false)
-(set: $lights to true)
-(set: $NaFood to false)
-(set: $ran to false)
-(set: $Agree2Help to false)
-(set: $NaVisit to false)
-(set: $AnVisit to false)
-(set: $StVisit to false)
-[[Play Game!-&gt;LOGOUT]]</tw-passagedata><tw-passagedata pid="65" name="Submit Night Report 1 2" tags="" position="329,1096" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+</tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,2" size="100,100">(set: $NaDead to false)(set: $AnDead to false)(set: $lights to true)(set: $NaFood to false)(set: $ran to false)(set: $Agree2Help to false)
+(set: $NaVisit to false)(set: $AnVisit to false)(set: $StVisit to false)
+&lt;script&gt;deleteSaveSlot(&quot;day1&quot;);deleteSaveSlot(&quot;day2&quot;);deleteSaveSlot(&quot;day3&quot;);&lt;/script&gt;
+[[Play Game!-&gt;LOGOUT]]</tw-passagedata><tw-passagedata pid="65" name="Submit Night Report 1 2" tags="" position="327,1092" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 Day,
 
 Nematoda Animcomedenti: 
 
-(if: $NaFood is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false, $NaDead to true)]
+(if: $NaFood is false and $NaDead is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false, $NaDead to true)]
 (elseif: $NaDead is true)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.(set:$NaDeadOnDay1 to true)]
 (elseif: $NaFood is true)[The Nema needs cowblood to survive...gross...we better put in an order for more.(set:$NaFoodOnDay1 to true, $NaDeadOnDay1 to false)]
 
@@ -872,15 +870,13 @@ $StSedated to false)(go-to: &quot;LOGOUT&quot;)]</tw-passagedata><tw-passagedata
 My Night Buddy,
 
 Nematoda Animcomedenti: 
-(if: $NaDead is true and $NaDeadOnDay1 is true)[]
-(elseif: $NaFoodOnDay2 is false and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...]
-(elseif: $NaFoodOnDay2 is true and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[It’s looking kind of sickly…is there such thing as too much blood?]
+(if: $NaDead is true and $NaDeadOnDay1 is true)[](elseif: $NaFoodOnDay2 is false and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...](elseif: $NaFoodOnDay2 is true and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[It’s looking kind of sickly…is there such thing as too much blood?]
+
 Atolla Nonarma:
-(if: $AnDead is true and $AnDeadOnDay2 is true and $NaDeadOnDay1 is false)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you…]
-(if: $AnDead is false)[I swear that guy gets bigger and bigger by the hour…I’m super worried. I passed it along, but so far no directive on what to do.]
+(if: $AnDead is true and $AnDeadOnDay2 is true and $NaDeadOnDay1 is false)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you…](if: $AnDead is false)[I swear that guy gets bigger and bigger by the hour…I’m super worried. I passed it along, but so far no directive on what to do.]
+
 Stomatopoda Terramillipedes:
-(if: $violent2 is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.]
-(if: $playful2 is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.]
+(if: $violent2 is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.](if: $playful2 is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.]
 
 (if: $talkLater is true)[Were you still thinking of coming to the work party on Saturday?]
 (if: $talkLater is false)[That sounds lovely! I’ll shoot you a real text :)]
@@ -904,13 +900,14 @@ Nematoda Animcomedenti: (if: $NaDead is false)[(if: $NaFood is true)[The Nema se
 
 Atolla Nonarma:
 
-(if: $AnDead is true)[1.The Atolla didn&#39;t make it through the night, please contact the Biohazard crew. ] 
-(else:)[2.The Atolla is fine…it’s creeping me out though.]
+(if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew. ] 
+(else:)[The Atolla is fine…it’s creeping me out though.]
 
 Stomatopoda Terramillipedes:
 
 (if: $ran)[The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.(click: &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)[(set: $violent3 to true, $StObservation3 to &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]]
 (elseif: $Agree2Help)[We need to release the Stoma from here and begin communicating with him. There is a lot we can learn from him, I think this is beyond the scope of our project now.(click: &quot;We need to release the Stoma from here and begin communicating with him. There is a lot we can learn from him, I think this is beyond the scope of our project now.&quot;)[(set: $playful3 to true, $StObservation3 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]]
+(else:)[The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.(click: &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)[(set: $violent3 to true, $StObservation3 to &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]]
 </tw-passagedata><tw-passagedata pid="73" name="Submit Night Report 3 2" tags="" position="536,1094" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
@@ -951,8 +948,8 @@ I feel like I need a better name for you.”
 The Stoma looked cautiously at me.
 
 (link: &quot;move forward&quot;)[
-The Stoma skittered back (bad noise?).
-“Sorry!” 
+The Stoma skittered back.
+“Sorry!” &lt;script&gt;soundPlayer(1);&lt;/script&gt;
 ]
 (link: &quot;hold up hands&quot;)[
 “I’ll stay over here.”
@@ -967,7 +964,8 @@ You feel like it is not a good idea to come closer to the creature...
 (link-goto: &quot;&lt;-&quot;, &quot;Go to Creatures&quot;)
 ]
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
-&lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;</tw-passagedata><tw-passagedata pid="75" name="Stephen" tags="" position="1177,928" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+&lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;
+&lt;audio src=&quot;sounds/BC_Stephen_Neg_01.ogg&quot;&gt;&lt;/audio&gt;</tw-passagedata><tw-passagedata pid="75" name="Stephen" tags="" position="1177,928" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 I pointed towards myself. 
 
 “I’m Night.”
