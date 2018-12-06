@@ -87,9 +87,10 @@ h2 {
 
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">window.Harlowe = { 'State' : State };
 
-Harlowe.State.variables["name"] = "Steven21"; // default
+Harlowe.State.variables["name"] = ""; // default
 Harlowe.State.variables["pwd"] = "password"; // default
 
 // used to submit form (use with caution, passage is always reloaded)
@@ -142,6 +143,7 @@ $('body').on('mousemove', () => {
 
 
 
+
 </script><tw-passagedata pid="1" name="LOGOUT" tags="" position="316,2" size="100,100">&lt;script&gt;if(!bgm.src.includes(&quot;mx/AllDaysMainMusic.m4a&quot;)){bgm.src=&quot;mx/AllDaysMainMusic.m4a&quot;;}&lt;/script&gt;
 (enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 (if: !$day)[(set: $day to 1)](if: !$inv)[(set: $inv to (a:))](if: $NaDead)[(set: $NaVisit to true)](if: $AnDead)[(set: $AnVisit to true)]
@@ -157,9 +159,11 @@ Actions
 [[Make coffee]]</tw-passagedata><tw-passagedata pid="2" name="Report Day 1" tags="" position="168,733" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
-&quot;Hey friendo!
+Hey friendo!
 
-Did you have fun on your vacation? The guy who was covering for you was so dull, didn&#39;t get any of my jokes at all. I think you are the only other person at BluCorp who knows the meaning of fun.
+Did you have fun on your vacation? The guy who was covering for you was so dull, didn&#39;t get any of my jokes at all. I think you are the only other person at BluCorp who knows the meaning of fun. 
+
+We’ve changed a few procedures since you’ve been gone, so check out the new staff manual in the computer. 
 
 They swapped out some of the animals while you were gone. There are some nasty ones in this batch so be careful, we don&#39;t know everything about them yet.
 
@@ -174,6 +178,7 @@ My mom is coming into town next week, do you have any restaurant suggestions? I&
 Catch you on the flip side!
 
 PS - got you a little gift, it&#39;s in the drawer ;)
+
 (link-goto: &quot;&lt;-&quot;, &quot;Reports&quot;) </tw-passagedata><tw-passagedata pid="3" name="Computer" tags="" position="314,144" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 Hello, $name!
 
@@ -284,9 +289,18 @@ Leaves
 (link-goto: &quot;&lt;-&quot;, &quot;type in password&quot;) </tw-passagedata><tw-passagedata pid="17" name="Staff Manual" tags="" position="169,612" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
-Never put yourself in unnecessary danger: any extra support for creature control is available. 
-Please call our internal emergency services instead of 911.
-If you see any employees break policy, please call our anonymous report line.
+Staff Manual
+
+Welcome to BluCorp! You have joined a very special organization, working on the forefront of biological enhancement studies. Your role is perhaps the most important one at our company; that of the research caretaker. It it is your care and diligence that makes the rest of our operation possible.
+
+Your duty is to keep these creatures alive, and record what you have learned about them. We have access to almost every imaginable resource, and have state of the art facility to support your endeavours. 
+
+The creatures can be extremely dangerous, and many safety measures have been installed to protect our employees, but extreme caution and attention should be used at all times. We cannot predict the actions of any creature, and by signing your contract you have waived all potential legal action that can be taken upon by you or your next of kin in cause of accident or death.
+
+Please record your findings for the next researcher at then end of every shift, as this helps your fellow coworkers enormously. 
+
+If you are experiencing harassment in the workplace you can report directly to your superior or to the toll free number to report anonymously.
+
 (link-goto: &quot;&lt;-&quot;, &quot;type in password&quot;) </tw-passagedata><tw-passagedata pid="18" name="Specimen 1: Nematoda Animcomedenti" tags="" position="0,482" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
@@ -745,11 +759,12 @@ img {
 =&gt;&lt;=
 &lt;h1&gt;BluCorp&lt;img src=&quot;imgs/bluecorplogo.png&quot; alt=&quot;logo&quot; height=&quot;100&quot; width=&quot;100&quot;&gt;&lt;/h1&gt;
 USER:
-&lt;input type=&quot;text&quot; value=&quot;Steven21&quot; data-varname=&quot;name&quot;&gt;\
+&lt;input type=&quot;text&quot; value=&quot;&quot; data-varname=&quot;name&quot; id=&quot;displayname&quot;&gt;\
 &lt;script&gt;processInputElements();&lt;/script&gt;
 PASSWORD:
 &lt;input type=&quot;password&quot; value=&quot;password&quot; data-varname=&quot;pwd&quot;&gt;\
 &lt;script&gt;processInputElements();&lt;/script&gt;
+&lt;script&gt;document.getElementById(&#39;displayname&#39;).value = Harlowe.State.variables[&quot;name&quot;];&lt;/script&gt;
 
 #####(click: &quot;LOGIN&quot;)[&lt;script&gt;processInputElements();&lt;/script&gt;][[LOGIN-&gt;type in password]]
 </tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,2" size="100,100">(set: $NaDead to false)
