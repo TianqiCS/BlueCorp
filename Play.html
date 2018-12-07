@@ -88,21 +88,10 @@ h2 {
 
 
 
-
-
-
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">window.Harlowe = { 'State' : State };
 
-Harlowe.State.variables["name"] = " "; // default
+Harlowe.State.variables["name"] = ""; // default
 Harlowe.State.variables["pwd"] = "password"; // default
-
-window.getStoragePrefix = function () {
-	return "(Saved Game " + Engine.options.ifid + ") ";
-}
-
-window.deleteSaveSlot = function (slotName) {
-	localStorage.removeItem(getStoragePrefix() + slotName);
-}
 
 // used to submit form (use with caution, passage is always reloaded)
 window.processInputElements = function () {
@@ -155,13 +144,9 @@ $('body').on('mousemove', () => {
 
 
 
-
-
-
-</script><tw-passagedata pid="1" name="LOGOUT" tags="" position="316,4" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+</script><tw-passagedata pid="1" name="LOGOUT" tags="" position="316,2" size="100,100">&lt;script&gt;if(!bgm.src.includes(&quot;mx/AllDaysMainMusic.m4a&quot;)){bgm.src=&quot;mx/AllDaysMainMusic.m4a&quot;;}&lt;/script&gt;
+(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 (if: !$day)[(set: $day to 1)](if: !$inv)[(set: $inv to (a:))](if: $NaDead)[(set: $NaVisit to true)](if: $AnDead)[(set: $AnVisit to true)]
-&lt;script&gt;if(!bgm.src.includes(&quot;mx/AllDaysMainMusic.m4a&quot;)){bgm.src=&quot;mx/AllDaysMainMusic.m4a&quot;;}&lt;/script&gt;
-(if:$NaDeadOnDay1 is true or $NaDeadOnDay2 is true or $AnDeadOnDay1 is true or $AnDeadOnDay2 is true)[(go-to: &quot;Leave office&quot;)]
 (if: (saved-games:) contains &quot;day&quot;+(text:$day))[] (else:)[(if:(save-game:&quot;day&quot;+(text:$day)))[](else:)[Sorry, I couldn&#39;t save your game.]]Day $day:
 19:00 
 
@@ -203,7 +188,7 @@ Hello, $name!
 [[LOG OUT-&gt;LOGOUT]]
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
-(if: $day is 1)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1Computer.m4a&quot;)){bgm.src=&quot;mx/Day1Computer.m4a&quot;;}&lt;/script&gt;](elseif: $day is 2)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day2Computer.m4a&quot;)){bgm.src=&quot;mx/Day2Computer.m4a&quot;;}&lt;/script&gt;](else:)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day3Computer.m4a&quot;)){bgm.src=&quot;mx/Day3Computer.m4a&quot;;}&lt;/script&gt;]</tw-passagedata><tw-passagedata pid="4" name="Drawer" tags="" position="606,2" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1Computer.m4a&quot;)){bgm.src=&quot;mx/Day1Computer.m4a&quot;;}&lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Drawer" tags="" position="606,2" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,1);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Drawer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Drawer_02.ogg&quot;&gt;&lt;/audio&gt;
 [[Envelope]]
@@ -262,11 +247,16 @@ Piggy died when Day knocked him into his coffee. We haven&#39;t had the heart to
 (link-goto: &quot;&lt;-&quot;, &quot;type in password&quot;) </tw-passagedata><tw-passagedata pid="13" name="Go to Creatures" tags="" position="476,132" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Office_Door_01.ogg&quot;&gt;&lt;/audio&gt;
-(if: $day is 1)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day1GoToCreatures.m4a&quot;;}&lt;/script&gt;](elseif: $day is 2)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day2GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day2GoToCreatures.m4a&quot;;}&lt;/script&gt;](else:)[&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day3GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day3GoToCreatures.m4a&quot;;}&lt;/script&gt;]
+&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day1GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day1GoToCreatures.m4a&quot;;}&lt;/script&gt;
 (if: $NaDead is false)[[[Nematoda Animcomedenti-&gt;Nematoda Animcomedenti]]]
 (if: $AnDead is false)[[[Atolla Nonarma-&gt;Atolla Nonarma]]]
-(if: $day is 1)[[[Stomatopoda Terramillipedes-&gt;Stomatopoda Terramillipedes]]](elseif: $ran is false and $Agree2Help is false and $day is 2)[[[Stomatopoda Terramillipedes-&gt;STDay2]]](elseif: $ran is true and $day is 2)[You can still feel your heart racing. You&#39;re defnitely not visiting Stomatopoda Terramillipedes again tonight.](elseif: $Agree2Help is true and $day is 2)[I have no reasons to visit Stomatopoda again.](elseif: $day is 3 and $StVisit is false)[[[Stomatopoda Terramillipedes-&gt;STDay3]]](elseif: $day is 3)[I don&#39;t want to visit Stomatopoda now.]
+(if: $day is 1)[[[Stomatopoda Terramillipedes-&gt;Stomatopoda Terramillipedes]]]
 
+(elseif: $ran is false and $Agree2Help is false and $day is 2)[[[Stomatopoda Terramillipedes-&gt;STDay2]]]
+(elseif: $ran is true and $day is 2)[You can still feel your heart racing. You&#39;re defnitely not visiting Stomatopoda Terramillipedes again tonight.]
+(elseif: $Agree2Help is true and $day is 2)[I have no reasons to visit Stomatopoda again.]
+(elseif: $day is 3 and $StVisit is false)[[[Stomatopoda Terramillipedes-&gt;STDay3]]]
+(elseif: $day is 3)[I don&#39;t want to visit Stomatopoda now.]
 
 [[Supplies]]
 (link-goto: &quot;&lt;-&quot;, &quot;LOGOUT&quot;)</tw-passagedata><tw-passagedata pid="14" name="Supplies" tags="inventory" position="482,278" size="100,100">Deceased Mice 
@@ -357,7 +347,7 @@ Interacting with this creature is highly discouraged.
 [[Drain Tank]]
 (set: $AnVisit to true)
 &lt;audio src=&quot;sounds/BC_Cell_Door_01.ogg&quot;&gt;&lt;/audio&gt;&lt;script&gt;soundPlayer(0);&lt;/script&gt;
-(link-goto: &quot;&lt;-&quot;, &quot;Go to Creatures&quot;)</tw-passagedata><tw-passagedata pid="23" name="Stomatopoda Terramillipedes" tags="" position="593,581" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+(link-goto: &quot;&lt;-&quot;, &quot;Go to Creatures&quot;)</tw-passagedata><tw-passagedata pid="23" name="Stomatopoda Terramillipedes" tags="" position="595,565" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 The creature is pacing around the cage, throwing itself at the walls, the doors, the roof. It&#39;s bigger than imagined, and the sound of the many legs scuttling across the ground is unnerving.
 
 [[Open Cage Stoma]]
@@ -377,20 +367,20 @@ The creature is pacing around the cage, throwing itself at the walls, the doors,
 (click:&quot;game&quot;)[{(if: $Saves contains &quot;day1&quot;)[
   (load-game:&quot;day1&quot;)]
 }]]</tw-passagedata><tw-passagedata pid="25" name="Give Nema" tags="" position="1215,137" size="100,100">(enchant: ?page, (background: &quot;imgs/obv3.png&quot;))
-(link: &quot;Give Deceased Mice&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Deceased Dog&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Horse meat&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Grain&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Apples&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Mealworms&quot;)[It noses it with its open mouth and then walks away, disinterested.]
+(link: &quot;Give Deceased Mice&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Deceased Dog&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Horse meat&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Grain&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Apples&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Mealworms&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
 (link: &quot;Give Cow Blood&quot;)[(set: $NaFood to true)It jumps on top of the bucket and buries its head in. The blood pours all over the floor. It settles down on the floor with it&#39;s limbs folded under it. It looks content.&lt;script&gt;soundPlayer(0);&lt;/script&gt;]
-(link: &quot;Give Cat food&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Water&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Sugar&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Cod&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Fermented Grapes&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Wolf Milk&quot;)[It noses it with its open mouth and then walks away, disinterested.]
-(link: &quot;Give Leaves&quot;)[It noses it with its open mouth and then walks away, disinterested.]
+(link: &quot;Give Cat food&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Water&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Sugar&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Cod&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Fermented Grapes&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Wolf Milk&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
+(link: &quot;Give Leaves&quot;)[It noses it&#39;s open mouth and then walks away, disinterested.]
 &lt;audio src=&quot;sounds/BC_Nema_Accept_01.ogg&quot;&gt;&lt;/audio&gt;
 (link-goto: &quot;&lt;-&quot;, &quot;Nematoda Animcomedenti&quot;)</tw-passagedata><tw-passagedata pid="26" name="Release sedative gas into chamber" tags="" position="940,141" size="100,100">(enchant: ?page, (background: &quot;imgs/obv3.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;&lt;audio src=&quot;sounds/BC_Sedative_Gas_01.ogg&quot;&gt;&lt;/audio&gt;
@@ -413,24 +403,23 @@ It thrashes wildly. The inclosure is a little cleaner.</tw-passagedata><tw-passa
 (if: $day is 1 and $NaVisit is true and $AnVisit is true and $StVisit is true)[[[Submit Night Report 1-&gt;Submit Night Report 1]]]
 (elseif: $day is 2 and $NaVisit is true and $AnVisit is true and $StVisit is true)[[[Submit Night Report 2-&gt;Submit Night Report 2]]]
 (elseif: $day is 3 and $NaVisit is true and $AnVisit is true and $StVisit is true)[[[Submit Night Report 3-&gt;Submit Night Report 3]]]
-(else:)[I haven&#39;t visited (if:!$NaVisit)[&lt;h4&gt;Nematoda Animcomedenti, &lt;/h4&gt;](if:!$AnVisit)[&lt;h4&gt;Atolla Nonarma, &lt;/h4&gt;](if:!$StVisit)[&lt;h4&gt;Stomatopoda Terramillipedes&lt;/h4&gt;]]
+(else:)[I haven&#39;t visited (if:!$NaVisit)[Nematoda Animcomedenti, ](if:!$AnVisit)[Atolla Nonarma, ](if:!$StVisit)[Stomatopoda Terramillipedes]]
 (link-goto: &quot;&lt;-&quot;, &quot;type in password&quot;) </tw-passagedata><tw-passagedata pid="29" name="Submit Night Report 1" tags="" position="327,988" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 Day,
 
 Nematoda Animcomedenti: 
-
-(if: $NaFood is false and $NaDead is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false)](elseif: $NaDead is true)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.(set:$NaDeadOnDay1 to true)](elseif: $NaFood is true)[The Nema needs cowblood to survive...gross...we better put in an order for more.(set:$NaFoodOnDay1 to true, $NaDeadOnDay1 to false)]
-
+(if: $NaFood is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false)]
+(elseif: $NaDead is true)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.(set:$NaDeadOnDay1 to true)]
+(elseif: $NaFood is true)[The Nema needs cowblood to survive...gross...we better put in an order for more.(set:$NaFoodOnDay1 to true, $NaDeadOnDay1 to false)]
 Atolla Nonarma:
-
-(if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew.(set:$AnDeadOnDay1 to true)] (if: $AnDead is false)[The Atolla seems content, at least as content as I can tell, the tank seems a little small for a creature of that size.(set:$AnDeadOnDay1 to false)]
+(if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew.(set:$AnDeadOnDay1 to true)] 
+(if: $AnDead is false)[The Atolla seems content, at least as content as I can tell, the tank seems a little small for a creature of that size.(set:$AnDeadOnDay1 to false)]
 Stomatopoda Terramillipedes:
 
-(if: $StEatAnything is true)[Very violent, will eat anything. I recommend staying as far away as possible.(click: &quot;Very violent, will eat anything. I recommend staying as far away as possible.&quot;)[(set: $violent to true, $StFriendship to $StFriendship - 1, $StObservation1 to &quot;Very violent, will eat anything. I recommend staying as far away as possible.&quot;)(go-to: &quot;Submit Night Report 1 2&quot;)]]
-(if: $StSprayWater is true)[Stoma likes to play in the water...isn&#39;t that cute? I think there is something underneath the violence.(click: &quot;Stoma likes to play in the water...isn&#39;t that cute? I think there is something underneath the violence.&quot;)[(set: $playful to true, $StFriendship to $StFriendship + 1, $StObservation1 to &quot;Stoma likes to play in the water...isn&#39;t that cute? I think there is something underneath the violence.&quot;)(go-to: &quot;Submit Night Report 1 2&quot;)]]
-[The Stoma’s condition is stable(click: &quot;The Stoma’s condition is stable&quot;)[(set: $StObservation1 to &quot;The Stoma’s condition is stable&quot;)(go-to: &quot;Submit Night Report 1 2&quot;)]]
+1. Very violent, will eat anything. I recommend staying as far away as possible.(click: &quot;Very violent, will eat anything. I recommend staying as far away as possible.&quot;)[(set: $violent to true, $StObservation1 to &quot;Very violent, will eat anything. I recommend staying as far away as possible.&quot;)(go-to: &quot;Submit Night Report 1 2&quot;)]
+2. Stoma likes to play in the water...isn&#39;t that cute? I think there is something underneath the violence.(click: &quot;Stoma likes to play in the water...isn&#39;t that cute? I think there is something underneath the violence.&quot;)[(set: $playful to true, $StObservation1 to &quot;Stoma likes to play in the water...isn&#39;t that cute? I think there is something underneath the violence.&quot;)(go-to: &quot;Submit Night Report 1 2&quot;)]
 
 (link-goto: &quot;&lt;-&quot;, &quot;Submit Reports&quot;)</tw-passagedata><tw-passagedata pid="30" name="Turn off lights" tags="" position="1059,280" size="100,100">(enchant: ?page, (background: &quot;imgs/obv2.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
@@ -502,7 +491,7 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 (link: &quot;Give Fermented Grapes&quot;)[It eats it in one gulp. Afterwards, Stoma gives a quick wave, as if to say thank you. That&#39;s...unsettling. It makes a noise, kind of like a purr. He recongizes I gave him the food...]
 (link: &quot;Give Wolf Milk&quot;)[It eats it in one gulp. Afterwards, Stoma gives a quick wave, as if to say thank you. That&#39;s...unsettling. It makes a noise, kind of like a purr. He recongizes I gave him the food...]
 (link: &quot;Give Leaves&quot;)[It eats it in one gulp. Afterwards, Stoma gives a quick wave, as if to say thank you. That&#39;s...unsettling. It makes a noise, kind of like a purr. He recongizes I gave him the food...]
-(set: $StEatAnything to true)
+
 (link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="36" name="Release sedative gas Stoma" tags="" position="890,582" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Sedative_Gas_01.ogg&quot;&gt;&lt;/audio&gt;
@@ -512,8 +501,8 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 (if: $StSedationCount is 3)[It stumbles around the enclosure.(set: $StSedated to true)]
 (if: $StSedationCount &gt; 3)[The creature is still stumbling.]
 
-(link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="37" name="Spray down with water Stoma" tags="" position="784,581" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
-(if: $StSedated is true)[The water pools on the floor and the Stooma rolls around on the floor, waving it&#39;s legs above it&#39;s head. It&#39;s making this cute little chirping sound. I think it&#39;s enjoying it.(set: $StSprayWater to true)&lt;script&gt;soundPlayer(0);&lt;/script&gt;]
+(link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="37" name="Spray down with water Stoma" tags="" position="784,583" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+(if: $StSedated is true)[The water pools on the floor and the Stooma rolls around on the floor, waving it&#39;s legs above it&#39;s head. It&#39;s making this cute little chirping sound. I think it&#39;s enjoying it.&lt;script&gt;soundPlayer(0);&lt;/script&gt;]
 (else:)[The Stoma screams into the air and continues to pace.&lt;script&gt;soundPlayer(1);&lt;/script&gt;]
 &lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Stephen_Neg_01.ogg&quot;&gt;&lt;/audio&gt;
 (link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="38" name="Open Cage Stoma" tags="" position="996,583" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
@@ -537,13 +526,15 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 My Night Buddy,
 
 Nematoda Animcomedenti: 
-(if: $NaDead is true and $NaDeadOnDay1 is true)[Big Bosses Upstairs are unimpressed that the Nema died...I&#39;d say best case is some more training coming your way...otherwise...](elseif: $NaFoodOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...](elseif: $NaFoodOnDay1 is true)[Oh jeez of course it&#39;s bloody, bloody cow blood. It drinks a lot of it too. I sent in a rush order for more supplies.]
-
+(if: $NaDead is true and $NaDeadOnDay1 is true)[Big Bosses Upstairs are unimpressed that the Nema died...I&#39;d say best case is some more training coming your way...otherwise...]
+(elseif: $NaFoodOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...]
+(elseif: $NaFoodOnDay1 is true)[Oh jeez of course it&#39;s bloody, bloody cow blood. It drinks a lot of it too. I sent in a rush order for more supplies.]
 Atolla Nonarma:
-(if: $AnDead is true and $AnDeadOnDay1 is true)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you..](else:)[That guy is growing so fast! I swear we didn&#39;t mean to set it up it these cramped, poor conditions, but we&#39;re kind of stuck now.]
-
+(if: $AnDead is true and $AnDeadOnDay1 is true)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you..]
+(else:)[That guy is growing so fast! I swear we didn&#39;t mean to set it up it these cramped, poor conditions, but we&#39;re kind of stuck now.]
 Stomatopoda Terramillipedes:
-(if: $violent is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.](elseif: $playful is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.](else:)[The Stoma remains stable, still keep an eye on it tonight.]
+(if: $violent is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.]
+(if: $playful is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.]
 
 (if: $GaveAdvice is true)[I&#39;ll keep that place in mind.]
 (if: $GaveAdvice is false)[Look, at my place it&#39;s microwave or bust. She doesn&#39;t need to see my shame.]
@@ -551,7 +542,7 @@ Stomatopoda Terramillipedes:
 Have a good night...
 
 (link-goto: &quot;&lt;-&quot;, &quot;Reports&quot;) </tw-passagedata><tw-passagedata pid="40" name="Ending" tags="" position="1599,128" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
-&lt;script&gt;if(!bgm.src.includes(&quot;mx/Day3GoToCreatures.m4a&quot;)){bgm.src=&quot;mx/Day3GoToCreatures.m4a&quot;;}&lt;/script&gt;
+&lt;script&gt;bgm.src=&quot;mx/BlueCorp.mp3&quot;;&lt;/script&gt;
 - Once logged off computer, the phone rings.
 
 Immediately dread filled me. I can&#39;t remember the last time the phone rang during the night shift. Had it ever?
@@ -559,8 +550,10 @@ Immediately dread filled me. I can&#39;t remember the last time the phone rang d
 &quot;Hello?&quot;
 &quot;Hello, there is a meeting happening upstairs, would you kindly join us?&quot;
 
-(if: $StFriendship &gt; 0)[[[Next-&gt;Next]]](else:)[[[Next-&gt;Next2]]]
-(if: $Agree2Help is true)[[[Let Stoma Go-&gt;Let Stoma Go]]]</tw-passagedata><tw-passagedata pid="41" name="STDay2" tags="" position="671,728" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+(if: $playful2 is true)[[[Next-&gt;Next]]
+[[Let Stoma Go]]]
+(else:)[[[Next-&gt;Next2]]
+[[Let Stoma Go]]]</tw-passagedata><tw-passagedata pid="41" name="STDay2" tags="" position="671,728" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 Stomatopoda Terramillipedes is pacing around the cage, throwing itself at the walls, the doors, the roof. It&#39;s bigger than imagined, and the sound of the many legs scuttling across the ground is unnerving.
 
 [[Open Cage-&gt;Open Cage Stoma Day2]]
@@ -607,10 +600,10 @@ The Stoma stands in the corner, looking suspiciously at me.
 &lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;
 It stumbles around the enclosure.The water pools on the floor and the Stoma rolls around on the floor, waving its legs above its head. It&#39;s making this cute little chirping sound. I think it&#39;s enjoying it. It splashes the water towards the window, it knows that I made that happen
 
-(link-goto: &quot;&lt;-&quot;, &quot;STDay2&quot;)</tw-passagedata><tw-passagedata pid="46" name="Run" tags="" position="1455,713" size="100,100">(enchant: ?page, (background: &quot;imgs/Observation hall tru.png&quot;))
+(link-goto: &quot;&lt;-&quot;, &quot;STDay2&quot;)</tw-passagedata><tw-passagedata pid="46" name="Run" tags="" position="1455,715" size="100,100">(enchant: ?page, (background: &quot;imgs/Observation hall tru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Stephen_Neg_01.ogg&quot;&gt;&lt;/audio&gt;
-(set: $ran to true, $StFriendship to $StFriendship - 1)
+(set: $ran to true)
 I slam and lock the door behind me, running all the way back to the office.
 
 (link-goto: &quot;-&gt;&quot;, &quot;LOGOUT&quot;)</tw-passagedata><tw-passagedata pid="47" name="Stay" tags="" position="1405,869" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
@@ -622,7 +615,7 @@ I let it get near, there is something in its eyes that says it&#39;s not going t
 [[Stay-&gt;Stay 2]]</tw-passagedata><tw-passagedata pid="48" name="Agree to help" tags="" position="1959,878" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Stephen_Help_01.ogg&quot;&gt;&lt;/audio&gt;
-(set: $Agree2Help to true, $StFriendship to $StFriendship + 1)
+(set: $Agree2Help to true)
 &quot;I&#39;ll help you. I&#39;ll get you out of here.&quot;
 
 (link-goto: &quot;-&gt;&quot;, &quot;Go to Creatures&quot;)</tw-passagedata><tw-passagedata pid="49" name="Submit Night Report 2" tags="" position="429,987" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
@@ -632,20 +625,18 @@ Day,
 
 Nematoda Animcomedenti:
 
-(if: $NaDead is false)[(if: $NaFood is true)[I feed the Nema cow blood, I think it&#39;s getting stronger.]](if: $NaDead is true and $NaDeadOnDay2 is true)[The Nema is dead]
+(if: $NaDead is false)[(if: $NaFood is true)[I feed the Nema cow blood, I think it&#39;s getting stronger.]]
+(if: $NaDead is true and $NaDeadOnDay2 is true)[The Nema is dead]
 
 Atolla Nonarma:
 
-(if: $AnDead is false)[The Atolla still seems content](if: $AnDead is true and $AnDeadOnDay2 is true)[The Atolla is dead] 
+(if: $AnDead is false)[The Atolla still seems content]
+(if: $AnDead is true and $AnDeadOnDay2 is true)[The Atolla is dead] 
 
 Stomatopoda Terramillipedes:
 
-(if: $ran is true)[Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.(click: &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)[(set: $violent2 to true, $StObservation2 to &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]]
-(if: $Agree2Help is true)[The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.(click: &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)[(set: $playful2 to true, $StObservation2 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]]
-[The Stoma is still dangerous, but seems to have settled down some.
-(click: &quot;The Stoma is still dangerous, but seems to have settled down some.
-&quot;)[(set: $StObservation2 to &quot;The Stoma is still dangerous, but seems to have settled down some.
-&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]]</tw-passagedata><tw-passagedata pid="50" name="Yes! We need to gain more of his trust, he is not a normal creature." tags="" position="1837,361" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
+1. Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.(click: &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)[(set: $violent2 to true, $StObservation2 to &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]
+2. The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.(click: &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)[(set: $playful2 to true, $StObservation2 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]</tw-passagedata><tw-passagedata pid="50" name="Yes! We need to gain more of his trust, he is not a normal creature." tags="" position="1837,361" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &quot;Look, it&#39;s not your fault that you don&#39;t know this. But whatever...relationship...you have with that thing is not acceptable.&quot;
 
 &quot;The discovery of that Stoma was phenomenal, fantastical, and the only thing that is keeping BluCorp afloat.&quot;
@@ -656,7 +647,7 @@ Stomatopoda Terramillipedes:
 
 &quot;So, you might now see how some low level like you, coming to bat for a monster like that is not welcome here.&quot;
 
-(if:$StFriendship &lt; 2)[[[Slience-&gt;Silence2]]]
+[[Silence2]]
 [[You are an exceptionally disgusting human being. Could you even imagine what we could learn from him!]]</tw-passagedata><tw-passagedata pid="51" name="Silence" tags="" position="1839,243" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &quot;That&#39;s very admirable, and we have always valued your silence. Now is not the time.&quot;
 
@@ -670,7 +661,7 @@ Stomatopoda Terramillipedes:
 
 &quot;So, you might now see how some low level like you, coming to bat for a monster like that is not welcome here.&quot;
 
-[[Silence -&gt;Silence2]]
+[[Silence2]]
 [[You are an exceptionally disgusting human being. Could you even imagine what we could learn from him!]]</tw-passagedata><tw-passagedata pid="52" name="Next" tags="" position="1722,238" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Office_Door_01.ogg&quot;&gt;&lt;/audio&gt;
@@ -681,7 +672,8 @@ The man at the desk says to me:
 &quot;Day sent me your report from last night. It seems that the Stoma is communicating in unexpected ways.&quot;
 
 [[Yes! We need to gain more of his trust, he is not a normal creature.]]
-(if:$StFriendship &lt; 2)[[[Silence-&gt;Silence]]]</tw-passagedata><tw-passagedata pid="53" name="Silence2" tags="" position="1997,243" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
+[[Silence]]
+</tw-passagedata><tw-passagedata pid="53" name="Silence2" tags="" position="1997,243" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &quot;So be it. How about you take the rest of the night off then?&quot;
 
 [[Leave office]]</tw-passagedata><tw-passagedata pid="54" name="You are an exceptionally disgusting human being. Could you even imagine what we could learn from him!" tags="" position="1997,361" size="100,100">(enchant: ?page, (background: &quot;imgs/endbad.png&quot;))
@@ -699,7 +691,7 @@ and gone
 
 [[End]]</tw-passagedata><tw-passagedata pid="55" name="Leave office" tags="" position="2197,292" size="100,100">(enchant: ?page, (background: &quot;imgs/endbad.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
-&lt;audio src=&quot;sounds/BC_Door_Screech_01.ogg&quot;&gt;&lt;/audio&gt;
+&lt;audio src=&quot;sounds/BC_Office_Door_01.ogg&quot;&gt;&lt;/audio&gt;
 So I was fired then. 
 
 I didn&#39;t even bother grabbing my things from the desk, I didn&#39;t want to be in the building a moment longer. Any longer and I would have - I don&#39;t even know what I would do...
@@ -725,7 +717,7 @@ The man at the desk says to me:
 
 [[End]]</tw-passagedata><tw-passagedata pid="57" name="End" tags="" position="2313,128" size="100,100">The End.
 (enchant: ?page, (background: &quot;imgs/3d.gif&quot;))
-&lt;h4&gt;But there may be other options&lt;/h4&gt;
+&lt;h4&gt;But there may be other opitions&lt;/h4&gt;
 |Overwrite Database|
 (click:&quot;|Overwrite Database|&quot;)[&lt;h2&gt;Restart&lt;/h2&gt;]
 (click:&quot;Restart&quot;)[{(if: $Saves contains &quot;day1&quot;)[
@@ -749,7 +741,7 @@ There was no time to sedate. I could hear yelling approaching me.
 &lt;audio src=&quot;sounds/BC_Stephen_Protec_01.ogg&quot;&gt;&lt;/audio&gt;
 The Stoma charges a soon as the door is open, it hits my chest and then it goes through it and begins to run through the facility. I fall backwards and feel my head slam against concrete and then only black.
 
-[[End]]</tw-passagedata><tw-passagedata pid="61" name="footer-inv" tags="" position="2,0" size="100,100">&lt;footer id=&quot;footer&quot;&gt;{}
+[[End]]</tw-passagedata><tw-passagedata pid="61" name="footer-inv" tags="footer" position="2,0" size="100,100">&lt;footer id=&quot;footer&quot;&gt;{}
 (if: (passage:)&#39;s tags contains &quot;-inv&quot;)[Check [[Inventory]]]
 &lt;/footer&gt;</tw-passagedata><tw-passagedata pid="62" name="Inventory" tags="" position="2,140" size="100,100">&lt;h2&gt;Inventory&lt;/h2&gt;
 (if: $inv&#39;s length &gt; 0)[Your inventory contains (print: $inv.join(&quot;, &quot;)).]
@@ -775,21 +767,30 @@ PASSWORD:
 &lt;script&gt;document.getElementById(&#39;displayname&#39;).value = Harlowe.State.variables[&quot;name&quot;];&lt;/script&gt;
 
 #####(click: &quot;LOGIN&quot;)[&lt;script&gt;processInputElements();&lt;/script&gt;][[LOGIN-&gt;type in password]]
-</tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,2" size="100,100">(set: $NaDead to false)(set: $AnDead to false)(set: $lights to true)(set: $NaFood to false)(set: $ran to false)(set: $Agree2Help to false)
-(set: $NaVisit to false)(set: $AnVisit to false)(set: $StVisit to false)(set: $StFriendship to 0)
-&lt;script&gt;deleteSaveSlot(&quot;day1&quot;);deleteSaveSlot(&quot;day2&quot;);deleteSaveSlot(&quot;day3&quot;);&lt;/script&gt;
-[[Play Game!-&gt;LOGOUT]]</tw-passagedata><tw-passagedata pid="65" name="Submit Night Report 1 2" tags="" position="326,1092" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+</tw-passagedata><tw-passagedata pid="64" name="Initialization" tags="" position="171,2" size="100,100">(set: $NaDead to false)
+(set: $AnDead to false)
+(set: $lights to true)
+(set: $NaFood to false)
+(set: $ran to false)
+(set: $Agree2Help to false)
+(set: $NaVisit to false)
+(set: $AnVisit to false)
+(set: $StVisit to false)
+[[Play Game!-&gt;LOGOUT]]</tw-passagedata><tw-passagedata pid="65" name="Submit Night Report 1 2" tags="" position="329,1096" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 Day,
 
 Nematoda Animcomedenti: 
 
-(if: $NaFood is false and $NaDead is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false, $NaDead to true)](elseif: $NaDead is true)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.(set:$NaDeadOnDay1 to true)](elseif: $NaFood is true)[The Nema needs cowblood to survive...gross...we better put in an order for more.(set:$NaFoodOnDay1 to true, $NaDeadOnDay1 to false)]
+(if: $NaFood is false)[I didn&#39;t learn what the Nema needs to drink...hopefully you can figure it out tomorrow.(set:$NaFoodOnDay1 to false, $NaDead to true)]
+(elseif: $NaDead is true)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.(set:$NaDeadOnDay1 to true)]
+(elseif: $NaFood is true)[The Nema needs cowblood to survive...gross...we better put in an order for more.(set:$NaFoodOnDay1 to true, $NaDeadOnDay1 to false)]
 
 Atolla Nonarma:
 
-(if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew.(set:$AnDeadOnDay1 to true)] (if: $AnDead is false)[The Atolla seems content, at least as content as I can tell, the tank seems a little small for a creature of that size.(set:$AnDeadOnDay1 to false)]
+(if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew.(set:$AnDeadOnDay1 to true)] 
+(if: $AnDead is false)[The Atolla seems content, at least as content as I can tell, the tank seems a little small for a creature of that size.(set:$AnDeadOnDay1 to false)]
 
 Stomatopoda Terramillipedes:
 
@@ -884,13 +885,15 @@ $StSedated to false)(go-to: &quot;LOGOUT&quot;)]</tw-passagedata><tw-passagedata
 My Night Buddy,
 
 Nematoda Animcomedenti: 
-(if: $NaDead is true and $NaDeadOnDay1 is true)[](elseif: $NaFoodOnDay2 is false and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...](elseif: $NaFoodOnDay2 is true and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[It’s looking kind of sickly…is there such thing as too much blood?]
-
+(if: $NaDead is true and $NaDeadOnDay1 is true)[]
+(elseif: $NaFoodOnDay2 is false and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the day...Big Bosses Upstairs are very unimpressed. I&#39;d say best case is some more training coming your way...otherwise...]
+(elseif: $NaFoodOnDay2 is true and $NaDeadOnDay2 is false and $NaDeadOnDay1 is false)[It’s looking kind of sickly…is there such thing as too much blood?]
 Atolla Nonarma:
-(if: $AnDead is true and $AnDeadOnDay2 is true and $NaDeadOnDay1 is false)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you…](if: $AnDead is false)[I swear that guy gets bigger and bigger by the hour…I’m super worried. I passed it along, but so far no directive on what to do.]
-
+(if: $AnDead is true and $AnDeadOnDay2 is true and $NaDeadOnDay1 is false)[Big Bosses Upstairs are pretty pissed about that one...real hard to track down apparently. I hope they aren&#39;t too harsh on you…]
+(if: $AnDead is false)[I swear that guy gets bigger and bigger by the hour…I’m super worried. I passed it along, but so far no directive on what to do.]
 Stomatopoda Terramillipedes:
-(if: $violent2 is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.](elseif: $playful2 is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.](else:)[You’re right, the Stoma is still very dangerous, but we seem to be making progress.]
+(if: $violent2 is true)[I know, that guy gives me such a bad feeling when I look at it. I&#39;m hoping he gets released soon. Less work for us to worry about.]
+(if: $playful2 is true)[I don&#39;t know if that&#39;s a good sign. Night, you know better, they are animals. Our job is to keep them alive so other people can care about things like how it has fun.]
 
 (if: $talkLater is true)[Were you still thinking of coming to the work party on Saturday?]
 (if: $talkLater is false)[That sounds lovely! I’ll shoot you a real text :)]
@@ -909,28 +912,30 @@ When I approach, the Stoma walks toward the glass.
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 Day,
 
-Nematoda Animcomedenti: 
-
-(if: $NaDead is false)[(if: $NaFood is true)[The Nema seems to be doing okay, it seems more lethargic than before…]](if: $NaDeadOnDay2 is false and  $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.]
+Nematoda Animcomedenti: (if: $NaDead is false)[(if: $NaFood is true)[The Nema seems to be doing okay, it seems more lethargic than before…]]
+(if: $NaDeadOnDay2 is false and  $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.]
 
 Atolla Nonarma:
 
-(if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew. ] (else:)[The Atolla is fine…it’s creeping me out though.]
+(if: $AnDead is true)[1.The Atolla didn&#39;t make it through the night, please contact the Biohazard crew. ] 
+(else:)[2.The Atolla is fine…it’s creeping me out though.]
 
 Stomatopoda Terramillipedes:
 
-(if: $StFriendship &lt; 2)[The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.(click: &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)[(set: $violent3 to true, $StObservation3 to &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]](if: $StFriendship &gt;= 2)[We need to release the Stoma from here and begin communicating with him. There is a lot we can learn from him, I think this is beyond the scope of our project now.(click: &quot;We need to release the Stoma from here and begin communicating with him. There is a lot we can learn from him, I think this is beyond the scope of our project now.&quot;)[(set: $playful3 to true, $StObservation3 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]]</tw-passagedata><tw-passagedata pid="73" name="Submit Night Report 3 2" tags="" position="536,1094" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+(if: $ran)[The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.(click: &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)[(set: $violent3 to true, $StObservation3 to &quot;The Stoma seems to have taken well to its conditions, at your approval I think we can send a request for delivery.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]]
+(elseif: $Agree2Help)[We need to release the Stoma from here and begin communicating with him. There is a lot we can learn from him, I think this is beyond the scope of our project now.(click: &quot;We need to release the Stoma from here and begin communicating with him. There is a lot we can learn from him, I think this is beyond the scope of our project now.&quot;)[(set: $playful3 to true, $StObservation3 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 3 2&quot;)]]
+</tw-passagedata><tw-passagedata pid="73" name="Submit Night Report 3 2" tags="" position="536,1094" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 Day,
 
-Nematoda Animcomedenti: 
-
-(if: $NaDead is false)[(if: $NaFood is true)[The Nema seems to be doing okay, it seems more lethargic than before…]](if: $NaDeadOnDay2 is false and  $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.]
+Nematoda Animcomedenti: (if: $NaDead is false)[(if: $NaFood is true)[The Nema seems to be doing okay, it seems more lethargic than before…]]
+(if: $NaDeadOnDay2 is false and  $NaDeadOnDay1 is false)[The Nema didn&#39;t make it through the night, please contact the Biohazard crew.]
 
 Atolla Nonarma:
 
-(if: $AnDead is true)[1.The Atolla didn&#39;t make it through the night, please contact the Biohazard crew. ] (else:)[2.The Atolla is fine…it’s creeping me out though.]
+(if: $AnDead is true)[1.The Atolla didn&#39;t make it through the night, please contact the Biohazard crew. ] 
+(else:)[2.The Atolla is fine…it’s creeping me out though.]
 
 Stomatopoda Terramillipedes:
 
@@ -959,8 +964,8 @@ I feel like I need a better name for you.”
 The Stoma looked cautiously at me.
 
 (link: &quot;move forward&quot;)[
-The Stoma skittered back.
-“Sorry!” &lt;script&gt;soundPlayer(1);&lt;/script&gt;
+The Stoma skittered back (bad noise?).
+“Sorry!” 
 ]
 (link: &quot;hold up hands&quot;)[
 “I’ll stay over here.”
@@ -975,8 +980,7 @@ You feel like it is not a good idea to come closer to the creature...
 (link-goto: &quot;&lt;-&quot;, &quot;Go to Creatures&quot;)
 ]
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
-&lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;
-&lt;audio src=&quot;sounds/BC_Stephen_Neg_01.ogg&quot;&gt;&lt;/audio&gt;</tw-passagedata><tw-passagedata pid="75" name="Stephen" tags="" position="1177,928" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+&lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;</tw-passagedata><tw-passagedata pid="75" name="Stephen" tags="" position="1177,928" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 I pointed towards myself. 
 
 “I’m Night.”
@@ -989,7 +993,7 @@ He pointed down at me and made a different sound than I had heard before.
 He then pointed back at himself, made a longer, sweeter sound
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;&lt;audio src=&quot;sounds/BC_Stephen_Stephen_01.ogg&quot;&gt;&lt;/audio&gt;
 I’m going to talk to someone, we’ll get you out of here.(click:&quot;I’m going to talk to someone, we’ll get you out of here.&quot;)[(go-to: &quot;Go to Creatures&quot;)]
-(if: $StFriendship &gt;= 2)[[[Let’s go. Right now.-&gt;Ending New]]]</tw-passagedata><tw-passagedata pid="76" name="Ending New" tags="" position="1602,572" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+[[Let’s go. Right now.-&gt;Ending New]]</tw-passagedata><tw-passagedata pid="76" name="Ending New" tags="" position="1602,572" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 The door I had come through was far too small for Stephen. I would have to open the whole room, the observation window was easy enough to get out of the way…it just made a lot of noise. 
 [[Open the Window -&gt;Open the Window]]
 [[Go back to the hallway -&gt;Go back to the hallway]] 
@@ -1002,7 +1006,7 @@ This was it. As I stepped out into the hallway alarms started. We’d have to mo
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;&lt;audio src=&quot;sounds/BC_Loading_Dock_01.ogg&quot;&gt;&lt;/audio&gt;
 [[&quot;Follow me!&quot; -&gt;Follow me!]] </tw-passagedata><tw-passagedata pid="78" name="Go back to the hallway" tags="" position="1599,444" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 “Never mind, I’m going to talk to someone and get you out of here.”
-(set: $StVisit to true)(set: $StFriendship to $StFriendship - 1)
+(set: $StVisit to true)
 &lt;audio src=&quot;sounds/BC_Cell_Door_01.ogg&quot;&gt;&lt;/audio&gt;&lt;script&gt;soundPlayer(0);&lt;/script&gt;
 [[Leave-&gt;Go to Creatures]]</tw-passagedata><tw-passagedata pid="79" name="Follow me!" tags="" position="2000,574" size="100,100">(enchant: ?page, (background: &quot;imgs/endescape.png&quot;))
 We had to go out the loading dock doors, and I hoped that whoever that alarm was hailing would come through the doors to the office, and we could be long gone by the time they reached us.
