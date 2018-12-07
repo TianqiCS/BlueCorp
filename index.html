@@ -345,7 +345,7 @@ Interacting with this creature is highly discouraged.
 (if: $NaDead is false)[[[Open Cage-&gt;Open Cage]]]
 (else:)[The creature is still dead, not much reason to go in there anymore.]
 [[Release sedative gas into chamber]]
-(link: &quot;Spray down with water&quot;)[(if: $NaDead is false)[It thrashes wildly. The inclosure is a little cleaner.](else:)[The inclosure is a little cleaner but the creature is still dead.]&lt;script&gt;soundPlayer(0);&lt;/script&gt;]
+(link: &quot;Spray down with water&quot;)[(if: $NaDead is false)[It thrashes wildly. The enclosure is a little cleaner.](else:)[The enclosure is a little cleaner but the creature is still dead.]&lt;script&gt;soundPlayer(0);&lt;/script&gt;]
 (set: $NaVisit to true)
 &lt;audio src=&quot;sounds/BC_Water_Spray_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Cell_Door_01.ogg&quot;&gt;&lt;/audio&gt;&lt;script&gt;soundPlayer(1);&lt;/script&gt;
 (link-goto: &quot;&lt;-&quot;, &quot;Go to Creatures&quot;)</tw-passagedata><tw-passagedata pid="22" name="Atolla Nonarma" tags="" position="702,279" size="100,100">(enchant: ?page, (background: &quot;imgs/obv2.png&quot;))
@@ -407,7 +407,7 @@ The creature is pacing around the cage, throwing itself at the walls, the doors,
 &lt;script&gt;soundPlayer(1);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Nema_ALT_01.ogg&quot;&gt;&lt;/audio&gt;
 &lt;audio src=&quot;sounds/BC_Water_Spray_01.ogg&quot;&gt;&lt;/audio&gt;
-It thrashes wildly. The inclosure is a little cleaner.</tw-passagedata><tw-passagedata pid="28" name="Submit Reports" tags="" position="430,809" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+It thrashes wildly. The enclosure is a little cleaner.</tw-passagedata><tw-passagedata pid="28" name="Submit Reports" tags="" position="430,809" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 (if: $day is 1 and $NaVisit is true and $AnVisit is true and $StVisit is true)[[[Submit Night Report 1-&gt;Submit Night Report 1]]]
@@ -426,6 +426,7 @@ Nematoda Animcomedenti:
 Atolla Nonarma:
 
 (if: $AnDead is true)[The Atolla didn&#39;t make it through the night, please contact the Biohazard crew.(set:$AnDeadOnDay1 to true)] (if: $AnDead is false)[The Atolla seems content, at least as content as I can tell, the tank seems a little small for a creature of that size.(set:$AnDeadOnDay1 to false)]
+
 Stomatopoda Terramillipedes:
 
 (if: $StEatAnything is true)[Very violent, will eat anything. I recommend staying as far away as possible.(click: &quot;Very violent, will eat anything. I recommend staying as far away as possible.&quot;)[(set: $violent to true, $StFriendship to $StFriendship - 1, $StObservation1 to &quot;Very violent, will eat anything. I recommend staying as far away as possible.&quot;)(go-to: &quot;Submit Night Report 1 2&quot;)]]
@@ -485,7 +486,7 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 }]
 (click:&quot;game&quot;)[{(if: $Saves contains &quot;day1&quot;)[
   (load-game:&quot;day1&quot;)]
-}]</tw-passagedata><tw-passagedata pid="35" name="Give Stomatopda" tags="" position="1166,582" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+}]</tw-passagedata><tw-passagedata pid="35" name="Give Stomatopda" tags="" position="1151,533" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;
 (link: &quot;Give Deceased Mice&quot;)[It eats it in one gulp. Afterwards, Stoma gives a quick wave, as if to say thank you. That&#39;s...unsettling. It makes a noise, kind of like a purr. He recongizes I gave him the food...]
@@ -642,9 +643,7 @@ Stomatopoda Terramillipedes:
 
 (if: $ran is true)[Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.(click: &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)[(set: $violent2 to true, $StObservation2 to &quot;Still very violent, but seems to be settling down a little, perhaps it will be ready to move on soon.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]]
 (if: $Agree2Help is true)[The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.(click: &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)[(set: $playful2 to true, $StObservation2 to &quot;The Stoma is not a regular creature, it asked me for help. I think we should try to talk to it more.&quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]]
-[The Stoma is still dangerous, but seems to have settled down some.
-(click: &quot;The Stoma is still dangerous, but seems to have settled down some.
-&quot;)[(set: $StObservation2 to &quot;The Stoma is still dangerous, but seems to have settled down some.
+[The Stoma is still dangerous, but seems to have settled down some.(click: &quot;The Stoma is still dangerous, but seems to have settled down some.&quot;)[(set: $StObservation2 to &quot;The Stoma is still dangerous, but seems to have settled down some.
 &quot;)(go-to: &quot;Submit Night Report 2 2&quot;)]]</tw-passagedata><tw-passagedata pid="50" name="Yes! We need to gain more of his trust, he is not a normal creature." tags="" position="1837,361" size="100,100">(enchant: ?page, (background: &quot;imgs/ObservationHallTru.png&quot;))
 &quot;Look, it&#39;s not your fault that you don&#39;t know this. But whatever...relationship...you have with that thing is not acceptable.&quot;
 
@@ -845,13 +844,11 @@ Day,
 
 Nematoda Animcomedenti:
 
-(if: $NaDead is false)[(if: $NaFood is true)[I feed the Nema cow blood, I think it&#39;s getting stronger.(set:$NaFoodOnDay2 to true)]]
-(elseif: $NaDead is true and $NaDeadOnDay2 is true)[The Nema is dead]
+(if: $NaDead is false)[(if: $NaFood is true)[I feed the Nema cow blood, I think it&#39;s getting stronger.(set:$NaFoodOnDay2 to true)]](elseif: $NaDead is true and $NaDeadOnDay2 is true)[The Nema is dead]
 
 Atolla Nonarma:
 
-(if: $AnDead is false)[The Atolla still seems content]
-(elseif: $AnDead is true and $AnDeadOnDay2 is true)[The Atolla is dead] 
+(if: $AnDead is false)[The Atolla still seems content](elseif: $AnDead is true and $AnDeadOnDay2 is true)[The Atolla is dead] 
 
 Stomatopoda Terramillipedes:
 
