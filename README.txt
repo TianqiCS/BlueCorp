@@ -1,13 +1,3 @@
-The Blu Team
+Presented by The Blu Team: Hope Docking (Writer), Isabella Fuccaro (Artist), Emily Casavant (Musician), Felipe Salas Noguera (Musician), Tianqi Wang (Programmer) and Alden Tan.
 
-Members: Alden, Bella, Emily, Felipe, Tianqi, and Hope
-
-To play the game, simply open the BluCorp.html file with Google Chrome!
-
-Hope you enjoy!!!
-
-
-Notice: The game files are updated, you should not use the old game resources files
-
-Demo: BluCorp.html
-Archive: BlueCorp Game Archive 1124.html
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
