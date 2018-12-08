@@ -486,7 +486,7 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 }]
 (click:&quot;game&quot;)[{(if: $Saves contains &quot;day1&quot;)[
   (load-game:&quot;day1&quot;)]
-}]</tw-passagedata><tw-passagedata pid="35" name="Give Stomatopda" tags="" position="1151,533" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+}]</tw-passagedata><tw-passagedata pid="35" name="Give Stomatopda" tags="" position="1175,560" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;
 (link: &quot;Give Deceased Mice&quot;)[It eats it in one gulp. Afterwards, Stoma gives a quick wave, as if to say thank you. That&#39;s...unsettling. It makes a noise, kind of like a purr. He recongizes I gave him the food...]
@@ -517,11 +517,12 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 (if: $StSedated is true)[The water pools on the floor and the Stooma rolls around on the floor, waving it&#39;s legs above it&#39;s head. It&#39;s making this cute little chirping sound. I think it&#39;s enjoying it.(set: $StSprayWater to true)&lt;script&gt;soundPlayer(0);&lt;/script&gt;]
 (else:)[The Stoma screams into the air and continues to pace.&lt;script&gt;soundPlayer(1);&lt;/script&gt;]
 &lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Stephen_Neg_01.ogg&quot;&gt;&lt;/audio&gt;
-(link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="38" name="Open Cage Stoma" tags="" position="996,583" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
+(link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="38" name="Open Cage Stoma" tags="" position="1000,580" size="100,100">(enchant: ?page, (background: &quot;imgs/obv1tru.png&quot;))
 &lt;script&gt;soundPlayer(0);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Stephen_Pos_01.ogg&quot;&gt;&lt;/audio&gt;
 (if: $StSedated is true)[It rears back and creates a loud sound that hurts my ears and rattles my brain. It moves to the corner and stands there.
 [[Feed with -&gt;Give Stomatopda]]
+(link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)
 ]
 (else:)[The Stoma charges a soon as the door is open, it hits my chest and then it goes through it and begins to run through the facility. I fall backwards and feel my head slam against concrete and then only black.
 &lt;h2&gt;wait! I want to start over the day / game!&lt;h2&gt;
@@ -530,9 +531,7 @@ The Atolla appears, gently glowing. It&#39;s floating around the tank, calmly. T
 }]
 (click:&quot;game&quot;)[{(if: $Saves contains &quot;day1&quot;)[
   (load-game:&quot;day1&quot;)]
-}]]
-
-(link-goto: &quot;&lt;-&quot;, &quot;Stomatopoda Terramillipedes&quot;)</tw-passagedata><tw-passagedata pid="39" name="Report Day 2" tags="" position="167,839" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
+}]]</tw-passagedata><tw-passagedata pid="39" name="Report Day 2" tags="" position="167,839" size="100,100">(enchant: ?page, (background: &quot;imgs/desk.png&quot;))
 &lt;script&gt;randomSoundPlayer(0,2);&lt;/script&gt;
 &lt;audio src=&quot;sounds/BC_Computer_01.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_02.ogg&quot;&gt;&lt;/audio&gt;&lt;audio src=&quot;sounds/BC_Computer_03.ogg&quot;&gt;&lt;/audio&gt;
 My Night Buddy,
